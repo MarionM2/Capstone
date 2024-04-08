@@ -1,9 +1,14 @@
+import os
 import streamlit as st
 import pandas as pd
 import joblib
 
+# Get the current directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
 # Load the trained model
-model = joblib.load('lr.pkl')
+model_path = os.path.join(current_dir, 'lr.pkl')
+model = joblib.load(model_path)
 
 # Define a function to simulate authentication
 def authenticate(email, password):
