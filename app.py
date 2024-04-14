@@ -93,11 +93,15 @@ def login_page():
         confirm_password_signup = st.text_input('Confirm Password (Sign Up)', type='password')
 
         if st.button('Sign Up'):
+            # Email validation regex pattern
+            email_pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
             # Password validation regex pattern
             password_pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
             
             if email_signup.strip() == '' or password_signup.strip() == '' or confirm_password_signup.strip() == '':
                 st.error('Please fill in all the fields.')
+            elif not re.match(email_pattern, email_signup):
+                st.error('Please enter a valid email address.')
             elif not re.match(password_pattern, password_signup):
                 st.error('Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character.')
             elif password_signup != confirm_password_signup:
