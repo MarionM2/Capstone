@@ -2,6 +2,8 @@ import os
 import streamlit as st
 import pandas as pd
 import joblib
+import re
+
 
 # Get the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -91,13 +93,18 @@ def login_page():
         confirm_password_signup = st.text_input('Confirm Password (Sign Up)', type='password')
 
         if st.button('Sign Up'):
+            # Password validation regex pattern
+            password_pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            
             if email_signup.strip() == '' or password_signup.strip() == '' or confirm_password_signup.strip() == '':
                 st.error('Please fill in all the fields.')
-            elif password_signup == confirm_password_signup:
+            elif not re.match(password_pattern, password_signup):
+                st.error('Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one number, and one special character.')
+            elif password_signup != confirm_password_signup:
+                st.error('Passwords do not match. Please try again.')
+            else:
                 save_credentials(email_signup, password_signup)
                 st.success('Sign up successful! You can now sign in.')
-            else:
-                st.error('Passwords do not match. Please try again.')
 
 def prediction_page():
     if st.session_state.get('logged_in'):
