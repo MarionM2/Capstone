@@ -109,7 +109,13 @@ def prediction_page():
         temperature = st.number_input('Temperature')
         Fertilizer_KG = st.number_input('Fertilizer(Kg)')
         
-        if st.button('Predict'):
+        # Disable predict button if any field is empty
+        if county and area and precipitation and temperature and Fertilizer_KG:
+            predict_button = st.button('Predict')
+        else:
+            predict_button = st.button('Predict', disabled=True)
+        
+        if predict_button:
             production = predict_production(county, area, precipitation, temperature, Fertilizer_KG)
             st.success(f'The predicted maize production is  {production:.2f} (MT)')
     else:
