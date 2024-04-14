@@ -46,7 +46,7 @@ def predict_production(county, area, precipitation, temperature, Fertilizer_KG):
         county = 0 
         
     # Create a DataFrame with all input features
-    data = pd.DataFrame({'County': [county], 'Area(HA)': [area], 'Precipitation(mm)': [precipitation],'Temperature(Celsius)': [temperature], 'Fertilizer(Kg)': [Fertilizer_KG]})
+    data = pd.DataFrame({'County': [county], 'Area': [area], 'Precipitation': [precipitation],'Temperature': [temperature], 'Fertilizer(Kg)': [Fertilizer_KG]})
     
     # Make the prediction
     prediction = model.predict(data)
