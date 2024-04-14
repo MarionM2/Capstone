@@ -104,9 +104,9 @@ def prediction_page():
         st.title('Happy Predicting')
         st.write('Enter the details to predict crop production:')
         county = st.selectbox('County', ['Baringo', 'Kisii', 'Siaya', 'UasinGishu', 'Bomet','Nakuru'])
-        area = st.number_input('Area')
-        precipitation = st.number_input('Precipitation')
-        temperature = st.number_input('Temperature')
+        area = st.number_input('Area(Ha)')
+        precipitation = st.number_input('Precipitation(mm)')
+        temperature = st.number_input('Temperature(Celsius)')
         Fertilizer_KG = st.number_input('Fertilizer(Kg)')
         
         if st.button('Predict'):
