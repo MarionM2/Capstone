@@ -46,7 +46,7 @@ def predict_production(county, area, precipitation, temperature, Fertilizer_KG):
         county = 0 
         
     # Create a DataFrame with all input features
-    data = pd.DataFrame({'County': [county], 'Area': [area], 'Precipitation': [precipitation],'Temperature': [temperature], 'Fertilizer(Kg)': [Fertilizer_KG]})
+    data = pd.DataFrame({'County': [county], 'Area (HA)': [area], 'Precipitation (mm)': [precipitation],'Temperature(Celsius)': [temperature], 'Fertilizer(Kg)': [Fertilizer_KG]})
     
     # Make the prediction
     prediction = model.predict(data)
@@ -103,7 +103,7 @@ def prediction_page():
     if st.session_state.get('logged_in'):
         st.title('Happy Predicting')
         st.write('Enter the details to predict crop production:')
-        county = st.selectbox('County', ['Baringo', 'Kisii'])
+        county = st.selectbox('County', ['Baringo', 'Kisii', 'Siaya', 'UasinGishu', 'Bomet','Nakuru'])
         area = st.number_input('Area')
         precipitation = st.number_input('Precipitation')
         temperature = st.number_input('Temperature')
@@ -111,7 +111,7 @@ def prediction_page():
         
         if st.button('Predict'):
             production = predict_production(county, area, precipitation, temperature, Fertilizer_KG)
-            st.success(f'The predicted crop production is {production:.2f}')
+            st.success(f'The predicted maize production is  {production:.2f} (MT)')
     else:
         st.warning('You need to login to access this page.')
 
