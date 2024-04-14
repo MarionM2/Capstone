@@ -103,7 +103,7 @@ def prediction_page():
     if st.session_state.get('logged_in'):
         st.title('Happy Predicting')
         st.write('Enter the details to predict crop production:')
-        county = st.selectbox('County', ['Baringo', 'Kisii', 'Siaya', 'UasinGishu', 'Bomet','Nakuru'])
+        county = st.selectbox('County', ['Baringo', 'Kisii', 'Siaya', 'UasinGishu', 'Bomet','Nakuru','Bungoma'])
         area = st.number_input('Area')
         precipitation = st.number_input('Precipitation')
         temperature = st.number_input('Temperature')
